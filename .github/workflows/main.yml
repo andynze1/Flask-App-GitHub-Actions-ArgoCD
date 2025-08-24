@@ -67,7 +67,7 @@ jobs:
     steps:
 
       - uses: actions/checkout@v3 # Cloneing the Repo
-      
+
       # UPdate the K8s Manifest Files
       - name: Update K8s Manifests
         run: |
@@ -102,7 +102,7 @@ jobs:
           --insecure \
           --grpc-web
 
-          argocd app sync python-app
+          argocd app sync flask-app
      
 
 
