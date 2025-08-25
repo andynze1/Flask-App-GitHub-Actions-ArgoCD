@@ -50,7 +50,7 @@ jobs:
       # Build the Docker Image
       - name: Build Docker Image
         run: |
-          docker build . -t andynze4/demo-app:${{ env.VERSION }} 
+          docker build . -t andynze4/flask-app:${{ env.VERSION }} 
       
       - name: Test Docker Login
         run: |
@@ -59,7 +59,7 @@ jobs:
       # Push the Docker Image
       - name: Push Docker Image
         run: |
-          docker push andynze4/flask-appp:${{ env.VERSION }}
+          docker push andynze4/flask-app:${{ env.VERSION }}
     outputs:
       commit_id: ${{ env.VERSION }}
 
