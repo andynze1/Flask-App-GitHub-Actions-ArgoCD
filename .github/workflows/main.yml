@@ -92,31 +92,15 @@ jobs:
         uses: EndBug/add-and-commit@v9
         with:
           message: 'Updating values.yaml with new commit ${{needs.build.outputs.commit_id}}'
-          
-      - name: Install ArgoCD CLI (multi-arch safe)
+
+      - name: Install ArgoCD CLI (fixed version for ARM64)
         shell: bash
         run: |
-          ARCH=$(uname -m)
-          if [[ "$ARCH" == "aarch64" ]]; then
-            ARCH_TYPE="arm64"
-          elif [[ "$ARCH" == "x86_64" ]]; then
-            ARCH_TYPE="amd64"
-          else
-            echo "Unsupported architecture: $ARCH"
-            exit 1
-          fi
-
-          echo "Detected architecture: $ARCH_TYPE"
-          curl -sSL -o argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-${ARCH_TYPE}
-          
-          if [[ ! -s argocd ]]; then
-            echo "Downloaded file is empty or invalid"
-            exit 1
-          fi
-
+          VERSION="v2.9.5"  # <-- Change this to a known good version with arm64 support
+          curl -sSL -o argocd https://github.com/argoproj/argo-cd/releases/download/${VERSION}/argocd-linux-arm64
           chmod +x argocd
           sudo mv argocd /usr/local/bin/argocd
-          echo "✅ ArgoCD CLI installed successfully."
+          echo "✅ ArgoCD CLI ${VERSION} installed successfully."
 
   #  # Download and install ArgoCD CLI from Installation
   #     - name: Install ArgoCD CLI
