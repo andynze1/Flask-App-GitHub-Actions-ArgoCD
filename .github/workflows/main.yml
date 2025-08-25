@@ -72,10 +72,11 @@ jobs:
 
       # UPdate the K8s Manifest Files
       - name: Update K8s Manifests
+        shell: bash
         run: |
-          cat deploy/deploy.yaml
-          sed -i "s|image: andynze4/flask-app:.*|image: andynze4/flask-app:${{ env.VERSION }}|g" deploy/deploy.yaml
-          cat deploy/deploy.yaml
+          echo ${{needs.build.outputs.commit_id}}
+          pip install yq
+          yq -Yi '.image.tag = "${{needs.ci.outputs.commit_id}}"' charts/flask-app/values.yaml
 
       # # Update Github
       # - name: Commit the changes
