@@ -59,7 +59,7 @@ jobs:
       # Push the Docker Image
       - name: Push Docker Image
         run: |
-          docker push andynze4/demo-app:${{ env.VERSION }}
+          docker push andynze4/flask-appp:${{ env.VERSION }}
     outputs:
       commit_id: ${{ env.VERSION }}
 
@@ -74,7 +74,7 @@ jobs:
       - name: Update K8s Manifests
         run: |
           cat deploy/deploy.yaml
-          sed -i "s|image: andynze4/demo-app:.*|image: andynze4/demo-app:${{ env.VERSION }}|g" deploy/deploy.yaml
+          sed -i "s|image: andynze4/flask-app:.*|image: andynze4/flask-app:${{ env.VERSION }}|g" deploy/deploy.yaml
           cat deploy/deploy.yaml
 
       # # Update Github
