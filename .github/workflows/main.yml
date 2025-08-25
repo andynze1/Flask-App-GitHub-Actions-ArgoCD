@@ -77,6 +77,16 @@ jobs:
           sed -i "s|image: andynze4/demo-app:.*|image: andynze4/demo-app:${{ env.VERSION }}|g" deploy/deploy.yaml
           cat deploy/deploy.yaml
 
+      # # Update Github
+      # - name: Commit the changes
+      #   run: |
+      #     git config --global user.email "andynze4@gmail.com"
+      #     git config --global user.name "GitHub Actions Bot"
+      #     git add deploy/deploy.yaml
+      #     git commit -m "Update deploy.yaml with new image version - ${{ env.VERSION }}"
+      #     git remote set-url origin https://github-actions:${{ secrets.GITHUB_TOKEN }}@github.com/andynze4/Flask-App-GitHub-Actions-ArgoCD.git
+      #     git push origin master
+      
       # Update Github
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
@@ -87,7 +97,7 @@ jobs:
       - name: Install ArgoCD CLI
         shell: bash
         run: |
-          curl -ksSL -o argocd https://argocd-server.argocd/download/argocd-linux-arm64
+          curl -sSL -o argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-arm64
           chmod +x argocd
           sudo mv argocd /usr/local/bin/argocd
 
