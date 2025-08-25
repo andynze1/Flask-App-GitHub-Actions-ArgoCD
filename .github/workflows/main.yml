@@ -57,7 +57,7 @@ jobs:
         run: |
           docker info
           
-      # Push the Docker Image
+      # Push the Docker Image.
       - name: Push Docker Image
         run: |
           docker push andynze4/flask-app:${{ env.COMMIT_ID }}

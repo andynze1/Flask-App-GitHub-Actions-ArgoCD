@@ -2,7 +2,7 @@ replicaCount: 1
 image:
   repository: andynze4/flask-app
   pullPolicy: IfNotPresent
-  tag: ''
+  tag: 3fd2d4
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
@@ -23,10 +23,17 @@ ingress:
   className: "nginx"
   annotations: {}
   hosts:
+<<<<<<< HEAD
     - host: flask.local
       paths:
         - path: /
           pathType: Prefix
+=======
+  - host: flask-app.test.com
+    paths:
+    - path: /
+      pathType: Prefix
+>>>>>>> e94d897 (Update-ArgoCD)
   tls: []
 resources:
   requests:
