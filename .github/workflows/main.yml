@@ -98,6 +98,7 @@ jobs:
         shell: bash
         run: |
           curl -sSL -o argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-arm64
+          file argocd  # ✅ debug output to confirm what was downloaded
           chmod +x argocd
           sudo mv argocd /usr/local/bin/argocd
 
